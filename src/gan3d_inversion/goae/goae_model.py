@@ -33,6 +33,8 @@ class GOAEModel:
 
     @torch.no_grad()
     def invert(self, image: np.ndarray, camera: np.ndarray) -> Tuple[torch.Tensor, torch.Tensor]:
+        if len(camera.shape) == 1:
+            camera = camera[None]
         device = self._device
         real_img = resize_img(image, 0.5)
         real_img_512 = torch.from_numpy(image).permute(2, 0, 1)[None]
