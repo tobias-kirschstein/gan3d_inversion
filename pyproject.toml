@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "gan3d_inversion"
-version = "0.0.2"
+version = "0.0.3"
 description = "<<<ENTER_DESCRIPTION>>>"
 authors = [
     { name = "Tobias Kirschstein", email = "tobias.kirschstein@gmail.com" },
@@ -35,3 +35,7 @@ dev = [
 [tool.setuptools.packages.find]
 where = ["src"]
 include = ["gan3d_inversion*"]  # Keep the '*', otherwise submodules are not found
+
+[tool.setuptools.package-data]
+"resources.artifacts" = ["*"]
+recipe = ["*.yaml"]
