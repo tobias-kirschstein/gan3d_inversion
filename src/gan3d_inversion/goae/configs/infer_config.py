@@ -1,15 +1,19 @@
 import os
 import argparse
+from pathlib import Path
+
+import gan3d_inversion
+
 
 def get_parser():
     parser = argparse.ArgumentParser()
 
     ## path 
-    parser.add_argument('--cfg', type=str,  metavar="FILE", help='path to config file', default='configs/swinv2.yaml')
+    parser.add_argument('--cfg', type=str,  metavar="FILE", help='path to config file', default=f'{str(Path(gan3d_inversion.goae.__file__).parent)}/configs/swinv2.yaml')
     parser.add_argument("--data", type=str, help='path to data directory', default='../example/real_person')
-    parser.add_argument("--G_ckpt", type=str, help='path to generator model', default='../pretrained/ffhqrebalanced512-128.pkl')
-    parser.add_argument("--E_ckpt", type=str, help='path to GOAE encoder checkpoint', default='../pretrained/encoder_FFHQ.pt')
-    parser.add_argument("--AFA_ckpt", type=str, help='path to AFA model checkpoint', default='../pretrained/afa_FFHQ.pt')
+    parser.add_argument("--G_ckpt", type=str, help='path to generator model', default=f'{Path.home()}/.cache/GOAE/ffhqrebalanced512-128.pkl')
+    parser.add_argument("--E_ckpt", type=str, help='path to GOAE encoder checkpoint', default=f'{Path.home()}/.cache/GOAE/encoder_FFHQ.pt')
+    parser.add_argument("--AFA_ckpt", type=str, help='path to AFA model checkpoint', default=f'{Path.home()}/.cache/GOAE/afa_FFHQ.pt')
     parser.add_argument("--outdir", type=str, help='path to output directory', default='../output/')
     parser.add_argument("--cuda", type=str, help="specify used cuda idx ", default='0')
 
