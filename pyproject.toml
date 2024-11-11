@@ -3,7 +3,7 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "<<<ENTER_PACKAGE_NAME>>>"
+name = "gan3d_inversion"
 version = "0.0.1"
 description = "<<<ENTER_DESCRIPTION>>>"
 authors = [
@@ -20,6 +20,8 @@ classifiers = [
 # urls = { Documentation = "<<<ENTER_LINK_TO_DOCUMENTATION>>>" }
 # Main dependencies
 dependencies = [
+    "yaml",
+    "yacs"
 ]
 
 [project.optional-dependencies]
@@ -32,4 +34,4 @@ dev = [
 
 [tool.setuptools.packages.find]
 where = ["src"]
-include = ["<<<ENTER_PACKAGE_NAME>>>*"]  # Keep the '*', otherwise submodules are not found
+include = ["gan3d_inversion*"]  # Keep the '*', otherwise submodules are not found
