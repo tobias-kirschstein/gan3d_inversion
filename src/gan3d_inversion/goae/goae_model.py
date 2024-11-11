@@ -36,6 +36,7 @@ class GOAEModel(nn.Module):
     def to(self, device: torch.device):
         self._net.device = device
         self._net.c_front.to(device)
+        self._net.w_avg = self._net.w_avg.to('cuda')
         self._net.to(device)
         self._device = device
 
