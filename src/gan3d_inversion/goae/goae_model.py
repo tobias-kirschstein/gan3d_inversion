@@ -6,14 +6,16 @@ import numpy as np
 import torch
 from dreifus.image import Img
 from elias.util.io import resize_img
+from torch import nn
 
 import gan3d_inversion
 from gan3d_inversion.goae.configs.swin_config import get_config
 from gan3d_inversion.goae.training.goae import Net
 
 
-class GOAEModel:
+class GOAEModel(nn.Module):
     def __init__(self, device: torch.device = torch.device('cuda')):
+        super().__init__()
         opts = Namespace(
             cfg=f'{str(Path(gan3d_inversion.goae.__file__).parent)}/configs/swinv2.yaml',
             G_ckpt=f'{Path.home()}/.cache/GOAE/ffhqrebalanced512-128.pkl',
