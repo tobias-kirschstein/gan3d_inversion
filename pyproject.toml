@@ -20,8 +20,8 @@ classifiers = [
 # urls = { Documentation = "<<<ENTER_LINK_TO_DOCUMENTATION>>>" }
 # Main dependencies
 dependencies = [
-    "yaml",
-    "yacs"
+#    "yaml",
+#    "yacs"
 ]
 
 [project.optional-dependencies]
