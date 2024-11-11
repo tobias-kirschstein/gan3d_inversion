@@ -1,3 +1,5 @@
+from argparse import Namespace
+from pathlib import Path
 from typing import Tuple, List
 
 import numpy as np
@@ -5,15 +7,22 @@ import torch
 from dreifus.image import Img
 from elias.util.io import resize_img
 
-from gan3d_inversion.goae.configs.infer_config import get_parser
+import gan3d_inversion
 from gan3d_inversion.goae.configs.swin_config import get_config
 from gan3d_inversion.goae.training.goae import Net
 
 
 class GOAEModel:
     def __init__(self, device: torch.device = torch.device('cuda')):
-        parser = get_parser()
-        opts = parser.parse_args()
+        opts = Namespace(
+            cfg=f'{str(Path(gan3d_inversion.goae.__file__).parent)}/configs/swinv2.yaml',
+            G_ckpt=f'{Path.home()}/.cache/GOAE/ffhqrebalanced512-128.pkl',
+            E_ckpt=f'{Path.home()}/.cache/GOAE/encoder_FFHQ.pt',
+            AFA_ckpt=f'{Path.home()}/.cache/GOAE/afa_FFHQ.pt',
+
+            mlp_layer=2,
+            start_from_latent_avg=True,
+        )
 
         ## build model
         swin_config = get_config(opts)
