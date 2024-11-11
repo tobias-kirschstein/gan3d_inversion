@@ -33,6 +33,12 @@ class GOAEModel(nn.Module):
 
         self._device = device
 
+    def to(self, device: torch.device):
+        self._net.device = device
+        self._net.c_front.to(device)
+        self._net.to(device)
+        self._device = device
+
     @torch.no_grad()
     def invert(self, image: np.ndarray, camera: np.ndarray) -> Tuple[torch.Tensor, torch.Tensor]:
         if len(camera.shape) == 1:
